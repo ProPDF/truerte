@@ -7,7 +7,7 @@ index 52d2a0d..6f35af9 100644
  Object.defineProperty(exports, "__esModule", { value: true });
  exports.populateIconProvider = void 0;
 -const template = `tinymce.IconManager.add('/* name */', {
-+const template = `hugerte.IconManager.add('/* name */', {
++const template = `truerte.IconManager.add('/* name */', {
    icons: {
  /* inject */  }
  });`;
@@ -20,10 +20,10 @@ index 8d22646..ccad684 100644
          validateIcons(exprt.getAll());
      }));
 -    it('"icons/my-icon-pack/icons.js" should add an icon pack to tinymce global', () => runPlugin({ name: 'my-icon-pack' }, svgs).then((mockFs) => {
-+    it('"icons/my-icon-pack/icons.js" should add an icon pack to hugerte global', () => runPlugin({ name: 'my-icon-pack' }, svgs).then((mockFs) => {
++    it('"icons/my-icon-pack/icons.js" should add an icon pack to truerte global', () => runPlugin({ name: 'my-icon-pack' }, svgs).then((mockFs) => {
          const file = mockFs['icons/my-icon-pack/icons.js'];
 -        Object.defineProperty(global, 'tinymce', {
-+        Object.defineProperty(global, 'hugerte', {
++        Object.defineProperty(global, 'truerte', {
              value: {
                  IconManager: {
                      add: (name, iconPack) => {

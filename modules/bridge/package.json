@@ -1,10 +1,10 @@
 {
   "name": "@ephox/bridge",
   "version": "4.7.1",
-  "description": "Ui API for HugeRTE",
+  "description": "Ui API for TrueRTE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hugerte/hugerte.git",
+    "url": "https://github.com/truerte/truerte.git",
     "directory": "modules/bridge"
   },
   "scripts": {

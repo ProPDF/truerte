@@ -11,6 +11,7 @@ scratch
 lib
 tsconfig.tsbuildinfo
 modules/*/LICENSE.TXT
+!modules/hugerte/LICENSE.TXT
 
 /dist
 /js

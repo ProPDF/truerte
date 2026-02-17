@@ -149,7 +149,7 @@ def props
 
 def cacheName = "cache_${BUILD_TAG}"
 
-def testname = "hugerte_${cleanBuildName(env.BRANCH_NAME)}_test${env.BUILD_NUMBER}"
+def testname = "truerte_${cleanBuildName(env.BRANCH_NAME)}_test${env.BUILD_NUMBER}"
 
 timestamps {
   bedrockRemoteTools.nodeProducerPod(
@@ -192,7 +192,7 @@ timestamps {
     }
 
     stage('Moxiedoc check') {
-      exec("yarn hugerte-grunt shell:moxiedoc")
+      exec("yarn truerte-grunt shell:moxiedoc")
     }
   }
 

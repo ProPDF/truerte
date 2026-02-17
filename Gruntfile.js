@@ -37,18 +37,18 @@ const filterChangesNot = (changes, badTests) => {
 */
 
 /** Note: this is optimized for speed. Turns out globbing in node.js is time-consuming.
- *  Restrict hugerte to 2 arbitrary levels of test base folders.
+ *  Restrict truerte to 2 arbitrary levels of test base folders.
  *  All other projects need their tests in src/test/ts
  */
 const testFolders = (tests, auto) => tests.flatMap((test) => {
   const testTypes = ['atomic', 'browser', 'headless'].concat(auto ? ['webdriver'] : []);
-  const bases = test.name === "hugerte" ? ["src/*/test/ts", "src/*/*/test/ts"] : ["src/test/ts"];
+  const bases = test.name === "truerte" ? ["src/*/test/ts", "src/*/*/test/ts"] : ["src/test/ts"];
   return bases.flatMap(base => testTypes.map(tt => `${test.location}/${base}/${tt}/**/*Test.ts`));
 });
 
 const bedrockDefaults = {
   config: 'tsconfig.json',
-  customRoutes: 'modules/hugerte/src/core/test/json/routes.json',
+  customRoutes: 'modules/truerte/src/core/test/json/routes.json',
   overallTimeout: 180000,
   singleTimeout: 60000,
 };
@@ -210,7 +210,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('legacy-warn', () => grunt.log.warn(`
 *******
-Top-level grunt has been replaced by 'yarn build', and the output has moved from project root to modules/hugerte
+Top-level grunt has been replaced by 'yarn build', and the output has moved from project root to modules/truerte
 *******
 `));
 

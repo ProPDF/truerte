@@ -39,6 +39,6 @@ UnitTest.asynctest('TinySelectionTest', (success, failure) => {
     ], loadSuccess, loadFailure);
 
   }, {
-    base_url: '/project/hugerte/js/hugerte'
+    base_url: '/project/truerte/js/truerte'
   }, success, failure);
 });

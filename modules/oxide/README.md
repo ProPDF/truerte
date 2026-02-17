@@ -1,7 +1,7 @@
 # TinyMCE Oxide skin tools
-This project contains the default skins as well as tools and files needed to build your own skin for HugeRTE.
+This project contains the default skins as well as tools and files needed to build your own skin for TrueRTE.
 
-Visit the [TinyMCE 6 documentation](https://www.tiny.cloud/docs/tinymce/6/creating-a-skin/) for instructions on how to create and build skins for HugeRTE until we host the docs on our own website.
+Visit the [TinyMCE 6 documentation](https://www.tiny.cloud/docs/tinymce/6/creating-a-skin/) for instructions on how to create and build skins for TrueRTE until we host the docs on our own website.
 
 ## Building the skins
 The build process uses [Node](http://nodejs.org/) and [Gulp](http://gulpjs.com/). Make sure you have both installed before you continue.

@@ -4,7 +4,7 @@ import { Attribute, Insert, Remove, Selectors, SugarBody, SugarElement, SugarSha
 
 import { Editor as EditorType } from '../alien/EditorTypes';
 import { loadScript } from '../loader/Loader';
-import { detectHugerteBaseUrl, setupHugerteBaseUrl } from '../loader/Urls';
+import { detectTruerteBaseUrl, setupTruerteBaseUrl } from '../loader/Urls';
 
 const errorMessageEditorRemoved = 'Editor Removed';
 
@@ -23,12 +23,12 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
     }
 
     const run = () => {
-      const hugerte = Global.hugerte;
-      setupHugerteBaseUrl(hugerte, nuSettings);
+      const truerte = Global.truerte;
+      setupTruerteBaseUrl(truerte, nuSettings);
 
       const targetSettings = SugarShadowDom.isInShadowRoot(element) ? ({ target: element.dom }) : ({ selector: '#' + randomId });
 
-      hugerte.init({
+      truerte.init({
         ...nuSettings,
         ...targetSettings,
         setup: (editor: T) => {
@@ -56,10 +56,10 @@ const pFromElement = <T extends EditorType = EditorType>(element: SugarElement<E
       });
     };
 
-    if (!Global.hugerte) {
-      // Attempt to load HugeRTE if it's not available
-      loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
-        result.fold(() => reject('Failed to find a global hugerte instance'), run);
+    if (!Global.truerte) {
+      // Attempt to load TrueRTE if it's not available
+      loadScript(detectTruerteBaseUrl(settings) + '/truerte.js').get((result) => {
+        result.fold(() => reject('Failed to find a global truerte instance'), run);
       });
     } else {
       run();

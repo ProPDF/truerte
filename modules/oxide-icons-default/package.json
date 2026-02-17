@@ -1,10 +1,10 @@
 {
   "name": "@tinymce/oxide-icons-default",
   "version": "2.6.1",
-  "description": "The default icon pack for HugeRTE",
+  "description": "The default icon pack for TrueRTE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hugerte/hugerte.git",
+    "url": "https://github.com/truerte/truerte.git",
     "directory": "modules/oxide-icons-default"
   },
   "main": "dist/js/icons.js",
@@ -14,7 +14,7 @@
     "ci": "gulp --no-color"
   },
   "keywords": [
-    "HugeRTE",
+    "TrueRTE",
     "Icons"
   ],
   "files": [

@@ -1,6 +1,6 @@
 # Pipeline Testing
 
-The following are the primary modules used when testing HugeRTE using the legacy pipeline syntax.
+The following are the primary modules used when testing TrueRTE using the legacy pipeline syntax.
 
 ## TinyActions
 
@@ -10,8 +10,8 @@ A collection of agar `Steps` which simulate key events to the editor UI and the 
 
 A collection of agar `Steps` and `Chains` used for:
 
-* getting, setting, and asserting content inside hugerte
-* getting, setting, and asserting the selection inside hugerte
+* getting, setting, and asserting content inside truerte
+* getting, setting, and asserting the selection inside truerte
 * focusing the editor
 * firing node changed events
 

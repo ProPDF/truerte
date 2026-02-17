@@ -1,0 +1,32 @@
+{
+  "name": "truerte",
+  "namedInputs": {
+    "truerte": [
+      "ts-globals",
+      "{projectRoot}/tsconfig.json",
+      "{projectRoot}/src/**/main/**/*.ts"
+    ]
+  },
+  "targets": {
+    "build": {
+      "inputs": [
+        "truerte",
+        "{projectRoot}/Gruntfile.js"
+      ],
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/js",
+        "{projectRoot}/lib"
+      ]
+    },
+    "test": {
+      "inputs": [
+        "truerte",
+        "{projectRoot}/src/**/test/**/*.ts"
+      ],
+      "dependsOn": [
+        "build"
+      ]
+    }
+  }
+}

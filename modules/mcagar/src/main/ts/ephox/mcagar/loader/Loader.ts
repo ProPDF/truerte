@@ -3,14 +3,14 @@ import { Arr, Fun, FutureResult, Global, Id, Optional, Result } from '@ephox/kat
 import { Attribute, DomEvent, Insert, Remove, SelectorFilter, SugarBody, SugarElement, SugarShadowDom } from '@ephox/sugar';
 
 import { Editor } from '../alien/EditorTypes';
-import { detectHugerteBaseUrl } from './Urls';
+import { detectTruerteBaseUrl } from './Urls';
 
 export type SuccessCallback = (v?: any, logs?: TestLogs) => void;
 export type FailureCallback = (err: Error | string, logs?: TestLogs) => void;
 export type RunCallback = (editor: any, success: SuccessCallback, failure: FailureCallback) => void;
 
 interface Callbacks {
-  preInit: (hugerte: any, settings: Record<string, any>) => void;
+  preInit: (truerte: any, settings: Record<string, any>) => void;
   run: RunCallback;
   success: SuccessCallback;
   failure: FailureCallback;
@@ -18,12 +18,12 @@ interface Callbacks {
 
 const createTarget = (inline: boolean) => SugarElement.fromTag(inline ? 'div' : 'textarea');
 
-const removeHugerteElements = () => {
-  // NOTE: Don't remove the link/scripts added, as those are part of the global hugerte which we don't clean up
+const removeTruerteElements = () => {
+  // NOTE: Don't remove the link/scripts added, as those are part of the global truerte which we don't clean up
   const elements = Arr.flatten([
-    // Some older versions of hugerte leaves elements behind in the dom
+    // Some older versions of truerte leaves elements behind in the dom
     SelectorFilter.all('.mce-notification,.mce-window,#mce-modal-block'),
-    // HugeRTE leaves inline editor content_styles in the dom
+    // TrueRTE leaves inline editor content_styles in the dom
     SelectorFilter.children(SugarElement.fromDom(document.head), 'style')
   ]);
 
@@ -59,9 +59,9 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
   }
 
   const teardown = () => {
-    Global.hugerte.remove();
+    Global.truerte.remove();
     Remove.remove(target);
-    removeHugerteElements();
+    removeTruerteElements();
   };
 
   // Agar v. ??? supports logging
@@ -83,12 +83,12 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
   const settingsSetup = settings.setup !== undefined ? settings.setup : Fun.noop;
 
   const run = () => {
-    const hugerte = Global.hugerte;
-    callbacks.preInit(hugerte, settings);
+    const truerte = Global.truerte;
+    callbacks.preInit(truerte, settings);
 
     const targetSettings = SugarShadowDom.isInShadowRoot(target) ? ({ target: target.dom }) : ({ selector: '#' + randomId });
 
-    hugerte.init({
+    truerte.init({
       ...settings,
       ...targetSettings,
       setup: (editor: Editor) => {
@@ -112,10 +112,10 @@ const setup = (callbacks: Callbacks, settings: Record<string, any>, elementOpt: 
     });
   };
 
-  if (!Global.hugerte) {
-    // Attempt to load HugeRTE if it's not available
-    loadScript(detectHugerteBaseUrl(settings) + '/hugerte.js').get((result) => {
-      result.fold(() => callbacks.failure('Failed to find a global hugerte instance'), run);
+  if (!Global.truerte) {
+    // Attempt to load TrueRTE if it's not available
+    loadScript(detectTruerteBaseUrl(settings) + '/truerte.js').get((result) => {
+      result.fold(() => callbacks.failure('Failed to find a global truerte instance'), run);
     });
   } else {
     run();

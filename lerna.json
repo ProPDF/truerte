@@ -3,7 +3,7 @@
   "npmClient": "yarn",
   "command":  {
     "publish": {
-      "ignoreChanges": ["modules/hugerte/**"],
+      "ignoreChanges": ["modules/truerte/**"],
       "push": false
     },
     "exec": {

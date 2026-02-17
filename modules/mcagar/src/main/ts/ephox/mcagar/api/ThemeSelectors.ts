@@ -4,11 +4,11 @@ import { Editor } from '../alien/EditorTypes';
 import { get as getOption } from '../alien/Options';
 
 const isSilver = (): boolean => {
-  const hugerte = Global.hugerte;
-  if (!hugerte) {
-    throw new Error('Failed to get global hugerte');
+  const truerte = Global.truerte;
+  if (!truerte) {
+    throw new Error('Failed to get global truerte');
   }
-  return Obj.has(hugerte.activeEditor, 'ui');
+  return Obj.has(truerte.activeEditor, 'ui');
 };
 
 const isModern = (): boolean => !isSilver();

@@ -1,18 +1,18 @@
 import { Strings, Type } from '@ephox/katamari';
 
-export const setHugerteBaseUrl = (hugerte: any, baseUrl: string): void => {
+export const setTruerteBaseUrl = (truerte: any, baseUrl: string): void => {
   const prefix = document.location.protocol + '//' + document.location.host;
-  hugerte.baseURL = baseUrl.indexOf('://') === -1 ? prefix + baseUrl : baseUrl;
-  hugerte.baseURI = new hugerte.util.URI(hugerte.baseURL);
+  truerte.baseURL = baseUrl.indexOf('://') === -1 ? prefix + baseUrl : baseUrl;
+  truerte.baseURI = new truerte.util.URI(truerte.baseURL);
 };
 
-export const detectHugerteBaseUrl = (settings: Record<string, any>): string =>
-  Type.isString(settings.base_url) ? settings.base_url : '/project/node_modules/hugerte';
+export const detectTruerteBaseUrl = (settings: Record<string, any>): string =>
+  Type.isString(settings.base_url) ? settings.base_url : '/project/node_modules/truerte';
 
-export const setupHugerteBaseUrl = (hugerte: any, settings: Record<string, any>): void => {
+export const setupTruerteBaseUrl = (truerte: any, settings: Record<string, any>): void => {
   if (Type.isString(settings.base_url)) {
-    setHugerteBaseUrl(hugerte, settings.base_url);
-  } else if (!Type.isString(hugerte.baseURL) || !Strings.contains(hugerte.baseURL, '/project/')) {
-    setHugerteBaseUrl(hugerte, '/project/node_modules/hugerte');
+    setTruerteBaseUrl(truerte, settings.base_url);
+  } else if (!Type.isString(truerte.baseURL) || !Strings.contains(truerte.baseURL, '/project/')) {
+    setTruerteBaseUrl(truerte, '/project/node_modules/truerte');
   }
 };

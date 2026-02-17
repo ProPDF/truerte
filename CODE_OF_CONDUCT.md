@@ -1,4 +1,4 @@
-# HugeRTE Code of conduct
+# TrueRTE Code of conduct
 
 It's very simple:
 - Have some common sense

@@ -1,6 +1,6 @@
-# The big HugeRTE monorepo
+# The big TrueRTE monorepo
 
-Welcome to the HugeRTE monorepo. For HugeRTE itself look to the [modules/hugerte](modules/hugerte) folder.
+Welcome to the TrueRTE monorepo. For TrueRTE itself look to the [modules/truerte](modules/truerte) folder.
 
 ## Some background
 
@@ -15,7 +15,7 @@ https://www.typescriptlang.org/docs/handbook/project-references.html
 
 Most monorepos use a `packages` folder to hold the included projects, but we have chosen `modules` instead. There are few reasons for this:
 
-* These projects are not extra packages of HugeRTE, they are self contained libraries used as module dependencies for the editor.
+* These projects are not extra packages of TrueRTE, they are self contained libraries used as module dependencies for the editor.
 * Enough examples exist of projects not using `packages` that we don't think it will be difficult to understand
 * It tab completes better (`packages` overlaps with `package.json`)
 
@@ -24,20 +24,20 @@ Most monorepos use a `packages` folder to hold the included projects, but we hav
 Install [Node.js](https://nodejs.org/en/) on your system.
 Clone this repository on your system
 ```
-$ git clone https://github.com/hugerte/hugerte.git
+$ git clone https://github.com/truerte/truerte.git
 ```
 
 ### Install dependencies
 
 * `yarn`
 
-### Build HugeRTE
+### Build TrueRTE
 
 * `yarn build`
 
-This will produce an editor build in `modules/hugerte/js`, with distribution zips in `modules/hugerte/dist/hugerte_[number].zip`.
+This will produce an editor build in `modules/truerte/js`, with distribution zips in `modules/truerte/dist/truerte_[number].zip`.
 
-## Developing HugeRTE
+## Developing TrueRTE
 
 * `yarn dev`
 
@@ -45,18 +45,18 @@ This performs compilation steps which webpack requires but are usually once-off.
 
 ### Builds
 
-To build the editor in development, use `yarn hugerte-grunt`. This will output to the `modules/hugerte/js` folder (`build` is effectively `dev` followed by `hugerte-grunt`).
+To build the editor in development, use `yarn truerte-grunt`. This will output to the `modules/truerte/js` folder (`build` is effectively `dev` followed by `truerte-grunt`).
 
-Task names can be included, for example `yarn hugerte-grunt bundle` will execute the bundle task. More information on HugeRTE grunt tasks is available in the [HugeRTE readme](modules/hugerte/README.md).
+Task names can be included, for example `yarn truerte-grunt bundle` will execute the bundle task. More information on TrueRTE grunt tasks is available in the [TrueRTE readme](modules/truerte/README.md).
 
 ## Development scripts
 
-There are many top-level helper scripts for HugeRTE and Oxide (the default skin) defined in `package.json`.
+There are many top-level helper scripts for TrueRTE and Oxide (the default skin) defined in `package.json`.
 
-### HugeRTE
+### TrueRTE
 
 `yarn start`
-This boots the HugeRTE webpack dev server at http://localhost:3000. With this running changes to _any_ `.ts` source file in the monorepo (excluding tests) should be reflected in WebPack within a few seconds.
+This boots the TrueRTE webpack dev server at http://localhost:3000. With this running changes to _any_ `.ts` source file in the monorepo (excluding tests) should be reflected in WebPack within a few seconds.
 
 `yarn watch`
 runs `tsc -b -w` for those times when you don't need to iterate in the browser.
@@ -67,8 +67,8 @@ an alias to `tsc -b` just in case you forget
 `yarn eslint`
 runs `eslint` across the entire repository with the rule set that is required to pass in CI. Use `yarn eslint --fix` to automatically fix minor problems. The [ESLint vscode plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) can be used to apply lint fixes on save.
 
-`yarn hugerte-grunt`
-easy access to the HugeRTE grunt commands from the root folder.
+`yarn truerte-grunt`
+easy access to the TrueRTE grunt commands from the root folder.
 
 ### Oxide
 
@@ -146,7 +146,7 @@ Changes to minor and major versions are such a rare occurence that this manual p
 
 `yarn lerna publish patch`
 
-This is configured via `lerna.json` to exclude HugeRTE. We will not be using lerna to publish HugeRTE itself as it places far greater importance on the version number than library projects.
+This is configured via `lerna.json` to exclude TrueRTE. We will not be using lerna to publish TrueRTE itself as it places far greater importance on the version number than library projects.
 
 `yarn lerna publish from-package`
 
@@ -161,18 +161,18 @@ git push --tags
 
 ## Adding globals
 
-HugeRTE puts a `hugerte` object in the global namespace, and has a tree of objects down from there.
+TrueRTE puts a `truerte` object in the global namespace, and has a tree of objects down from there.
 If you wish to add to this, you need to do the following:
 
-1. Ensure your module is located under `modules/hugerte/src/core/main/ts/api`
-2. Expose any types under `interface HugeRTE` in `modules/hugerte/src/core/main/ts/api/Hugerte.ts`
-3. Expose any objects/functions as part of `const publicApi` in `modules/hugerte/src/core/main/ts/api/Hugerte.ts`
-4. Ensure your values are exposed in `modules/hugerte/src/core/main/json/globals.json`
+1. Ensure your module is located under `modules/truerte/src/core/main/ts/api`
+2. Expose any types under `interface TrueRTE` in `modules/truerte/src/core/main/ts/api/Truerte.ts`
+3. Expose any objects/functions as part of `const publicApi` in `modules/truerte/src/core/main/ts/api/Truerte.ts`
+4. Ensure your values are exposed in `modules/truerte/src/core/main/json/globals.json`
 
-Ensure the paths all match. e.g. if you're exposing `modules/hugerte/src/core/main/ts/api/dom/StyleSheetLoader.ts`
+Ensure the paths all match. e.g. if you're exposing `modules/truerte/src/core/main/ts/api/dom/StyleSheetLoader.ts`
 
 1. The module is under `.../api/dom/StyleSheetLoader.ts`
-2. The type is `HugeRTE.dom.StyleSheetLoader`
+2. The type is `TrueRTE.dom.StyleSheetLoader`
 3. The constructor function is `publicApi.dom.StyleSheetLoader`
-4. globals.json contains `"hugerte.core.api.dom.StyleSheetLoader"`
+4. globals.json contains `"truerte.core.api.dom.StyleSheetLoader"`
 

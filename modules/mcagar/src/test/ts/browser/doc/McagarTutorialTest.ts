@@ -52,6 +52,6 @@ UnitTest.asynctest('McagarTutorialTest', (success, failure) => {
     setup: silverSetup,
     menubar: false,
     toolbar: 'tutorial-button',
-    base_url: '/project/hugerte/js/hugerte'
+    base_url: '/project/truerte/js/truerte'
   }, success, failure);
 });

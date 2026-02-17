@@ -4,7 +4,7 @@
   "description": "Platform detection library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hugerte/hugerte.git",
+    "url": "https://github.com/truerte/truerte.git",
     "directory": "modules/sand"
   },
   "files": [

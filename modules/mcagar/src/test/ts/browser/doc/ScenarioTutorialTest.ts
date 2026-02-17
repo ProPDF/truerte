@@ -9,7 +9,7 @@ import * as TinyLoader from 'ephox/mcagar/api/pipeline/TinyLoader';
 import { TinyScenarios } from 'ephox/mcagar/api/pipeline/TinyScenarios';
 import { TinyDom } from 'ephox/mcagar/api/TinyDom';
 
-UnitTest.asynctest('Tutorial: Property Testing with HugeRTE', (success, failure) => {
+UnitTest.asynctest('Tutorial: Property Testing with TrueRTE', (success, failure) => {
 
   const sAssertion = (editor: Editor, body: SugarElement<Node>) => Step.sync(() => {
     const strongs = UiFinder.findAllIn(body, 'strong');
@@ -48,6 +48,6 @@ UnitTest.asynctest('Tutorial: Property Testing with HugeRTE', (success, failure)
     ], loadSuccess, loadFailure);
 
   }, {
-    base_url: '/project/hugerte/js/hugerte'
+    base_url: '/project/truerte/js/truerte'
   }, success, failure);
 });

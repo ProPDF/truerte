@@ -34,7 +34,7 @@ UnitTest.asynctest('ActionTest', (success, failure) => {
   ]);
 
   const sTestStep = Chain.asStep({}, [
-    McEditor.cFromSettings({ base_url: '/project/hugerte/js/hugerte' }),
+    McEditor.cFromSettings({ base_url: '/project/truerte/js/truerte' }),
     cAssertContentKeyboardEvent(ActionChains.cContentKeypress, {
       type: 'keypress',
       code: 88,

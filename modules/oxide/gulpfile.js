@@ -41,21 +41,21 @@ gulp.task('buildDemos', function() {
 });
 
 //
-// Copy HugeRTE from modules/hugerte to the build folder.
+// Copy TrueRTE from modules/truerte to the build folder.
 // NOTE. This task must be run after the buildDemos task
 //
-gulp.task('copyHugerte', function(done) {
-  if (fs.existsSync('../hugerte/js/hugerte/hugerte.min.js')) {
-    return gulp.src(['../hugerte/js/hugerte/**/*'], {
-        base: '../hugerte/js/'
+gulp.task('copyTruerte', function(done) {
+  if (fs.existsSync('../truerte/js/truerte/truerte.min.js')) {
+    return gulp.src(['../truerte/js/truerte/**/*'], {
+        base: '../truerte/js/'
       })
       .pipe(gulp.dest('./build'));
   } else {
-    console.log(chalk.red('Local HugeRTE does not exist. Using CDN version instead'));
-    console.log(chalk.yellow('Run yarn build in the repository root to build a local version of HugeRTE'));
-    const url = 'https://cdn.jsdelivr.net/npm/hugerte@1/hugerte.min.js';
+    console.log(chalk.red('Local TrueRTE does not exist. Using CDN version instead'));
+    console.log(chalk.yellow('Run yarn build in the repository root to build a local version of TrueRTE'));
+    const url = 'https://cdn.jsdelivr.net/npm/truerte@1/truerte.min.js';
     const html = fs.readFileSync('./build/index.html', 'utf8');
-    fs.writeFileSync('./build/index.html', html.replace('/hugerte/hugerte.min.js', url));
+    fs.writeFileSync('./build/index.html', html.replace('/truerte/truerte.min.js', url));
     done();
   }
 });
@@ -107,7 +107,7 @@ gulp.task('generateJs', function() {
     .pipe(cleanCSS({ rebase: false }))
     .pipe(through2.obj(function(file, _, cb) {
       if (file.isBuffer()) {
-        const contents = `hugerte.Resource.add('${file.relative}', ${JSON.stringify(file.contents.toString())})`;
+        const contents = `truerte.Resource.add('${file.relative}', ${JSON.stringify(file.contents.toString())})`;
         file.contents = Buffer.from(contents)
       }
       cb(null, file);
@@ -130,7 +130,7 @@ gulp.task('monitor', function (done) {
     this.server.on('close', done);
   });
 
-  gulp.watch('./src/**/*').on('change', gulp.series('css', 'buildDemos', 'buildSkinSwitcher', 'copyHugerte'));
+  gulp.watch('./src/**/*').on('change', gulp.series('css', 'buildDemos', 'buildSkinSwitcher', 'copyTruerte'));
 });
 
 //
@@ -152,4 +152,4 @@ gulp.task('build', gulp.series('clean', 'css'));
 gulp.task('default', gulp.series('build'));
 
 gulp.task('demo-build', gulp.series('css', 'less', 'minifyCss', 'buildDemos', 'buildSkinSwitcher'));
-gulp.task('watch', gulp.series('build', 'buildDemos', 'buildSkinSwitcher', 'copyHugerte', 'monitor'));
+gulp.task('watch', gulp.series('build', 'buildDemos', 'buildSkinSwitcher', 'copyTruerte', 'monitor'));

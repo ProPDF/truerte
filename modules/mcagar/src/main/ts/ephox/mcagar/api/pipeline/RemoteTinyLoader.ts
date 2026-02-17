@@ -3,11 +3,11 @@ import { Arr, FutureResult, Optional } from '@ephox/katamari';
 import { SugarElement } from '@ephox/sugar';
 
 import * as Loader from '../../loader/Loader';
-import { setHugerteBaseUrl } from '../../loader/Urls';
+import { setTruerteBaseUrl } from '../../loader/Urls';
 
-const setupBaseUrl = (hugerte: any, settings: Record<string, any>) => {
+const setupBaseUrl = (truerte: any, settings: Record<string, any>) => {
   if (settings.base_url) {
-    setHugerteBaseUrl(hugerte, settings.base_url);
+    setTruerteBaseUrl(truerte, settings.base_url);
   }
 };
 

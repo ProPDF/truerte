@@ -7,7 +7,7 @@ import { ApiChains } from 'ephox/mcagar/api/pipeline/ApiChains';
 UnitTest.asynctest('SelectionTest', (success, failure) => {
 
   const sTestStep = Chain.asStep({}, [
-    McEditor.cFromSettings({ base_url: '/project/hugerte/js/hugerte' }),
+    McEditor.cFromSettings({ base_url: '/project/truerte/js/truerte' }),
     ApiChains.cFocus,
     ApiChains.cSetContent('<p>this is one paragraph</p><p>This is another</p>'),
     ApiChains.cSetSelection([ 0, 0 ], 'this'.length, [ 1, 0 ], 'This is'.length),
