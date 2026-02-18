@@ -32,6 +32,7 @@
       "truerte/plugins/importcss/*": ["src/plugins/importcss/main/ts/*"],
       "truerte/plugins/insertdatetime/*": ["src/plugins/insertdatetime/main/ts/*"],
       "truerte/plugins/letterspacing/*": ["src/plugins/letterspacing/main/ts/*"],
+      "truerte/plugins/lucideicons/*": ["src/plugins/lucideicons/main/ts/*"],
       "truerte/plugins/link/*": ["src/plugins/link/main/ts/*"],
       "truerte/plugins/lists/*": ["src/plugins/lists/main/ts/*"],
       "truerte/plugins/media/*": ["src/plugins/media/main/ts/*"],

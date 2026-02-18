@@ -13,7 +13,7 @@ let path = require('path');
 let plugins = [
   'accordion', 'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code', 'codesample',
   'casechange', 'directionality', 'emoticons', 'help', 'fullscreen', 'image', 'importcss', 'insertdatetime',
-  'letterspacing', 'link', 'lists', 'media', 'nonbreaking', 'pagebreak', 'paragraphspacing', 'preview', 'save', 'searchreplace',
+  'letterspacing', 'lucideicons', 'link', 'lists', 'media', 'nonbreaking', 'pagebreak', 'paragraphspacing', 'preview', 'save', 'searchreplace',
   'table', 'template', 'visualblocks', 'visualchars', 'wordcount', 'quickbars'
 ];
 
@@ -237,6 +237,7 @@ module.exports = function (grunt) {
           files: [
             { src: 'js/truerte/truerte.js', dest: 'js/truerte/truerte.min.js' },
             { src: 'js/truerte/icons/default/icons.js', dest: 'js/truerte/icons/default/icons.min.js' },
+            { src: 'js/truerte/icons/truerte-lucide/icons.js', dest: 'js/truerte/icons/truerte-lucide/icons.min.js' },
           ]
         },
         // very similar to the emoticons plugin, except mangle is off
@@ -382,12 +383,30 @@ module.exports = function (grunt) {
         ]
       },
       'default-icons': {
+        options: {
+          process: function (content, srcpath) {
+            if (/icons(\.min)?\.js$/.test(srcpath)) {
+              return content.replace(/\bhugerte\.IconManager\b/g, 'truerte.IconManager');
+            }
+            return content;
+          }
+        },
         files: [
           {
             expand: true,
             cwd: '../oxide-icons-default/dist/icons/default',
             src: '**',
             dest: 'js/truerte/icons/default'
+          }
+        ]
+      },
+      'truerte-lucide-icons': {
+        files: [
+          {
+            expand: true,
+            cwd: 'src/icons/truerte-lucide',
+            src: '**',
+            dest: 'js/truerte/icons/truerte-lucide'
           }
         ]
       },
@@ -986,6 +1005,7 @@ module.exports = function (grunt) {
     'copy:ui-skins',
     'copy:content-skins',
     'copy:default-icons',
+    'copy:truerte-lucide-icons',
     'copy:html-i18n'
   ]);
 
