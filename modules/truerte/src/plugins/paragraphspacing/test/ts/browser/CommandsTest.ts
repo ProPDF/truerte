@@ -51,4 +51,22 @@ describe('browser.truerte.plugins.paragraphspacing.CommandsTest', () => {
 
     TinyAssertions.assertContent(editor, '<p style="margin-bottom: 0px;">alpha</p><p>beta</p>');
   });
+
+  it('TINY-XXXX: mceSetParagraphSpacing should support all position/action combinations', () => {
+    const editor = hook.editor();
+
+    editor.setContent('<p>alpha</p><p>beta</p>');
+    TinySelections.setCursor(editor, [ 1, 0 ], 1);
+    editor.execCommand('mceSetParagraphSpacing', false, { position: 'before', action: 'add' });
+    TinyAssertions.assertContent(editor, '<p>alpha</p><p style="margin-top: 10px;">beta</p>');
+
+    editor.execCommand('mceSetParagraphSpacing', false, { position: 'after', action: 'add' });
+    TinyAssertions.assertContent(editor, '<p>alpha</p><p style="margin-top: 10px; margin-bottom: 10px;">beta</p>');
+
+    editor.execCommand('mceSetParagraphSpacing', false, { position: 'before', action: 'remove' });
+    TinyAssertions.assertContent(editor, '<p>alpha</p><p style="margin-top: 0px; margin-bottom: 10px;">beta</p>');
+
+    editor.execCommand('mceSetParagraphSpacing', false, { position: 'after', action: 'remove' });
+    TinyAssertions.assertContent(editor, '<p>alpha</p><p style="margin-top: 0px; margin-bottom: 0px;">beta</p>');
+  });
 });

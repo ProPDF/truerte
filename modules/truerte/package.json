@@ -1,14 +1,14 @@
 {
   "name": "truerte",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "repository": {
     "type": "git",
-    "url": "https://github.com/irteza/truerte"
+    "url": "git+https://github.com/TrueRTE/truerte.git"
   },
   "description": "TrueRTE rich text editor",
   "author": "Ephox Corporation DBA Tiny Technologies, Inc and the TrueRTE contributors",
   "bugs": {
-    "url": "https://github.com/irteza/truerte/issues"
+    "url": "https://github.com/TrueRTE/truerte/issues"
   },
   "license": "MIT",
   "files": [

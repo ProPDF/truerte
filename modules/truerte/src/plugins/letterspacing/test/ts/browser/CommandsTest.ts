@@ -39,4 +39,14 @@ describe('browser.truerte.plugins.letterspacing.CommandsTest', () => {
 
     TinyAssertions.assertContent(editor, '<p>hello world</p>');
   });
+
+  it('TINY-XXXX: mceSetLetterSpacing should apply spacing style to selected text', () => {
+    const editor = hook.editor();
+
+    editor.setContent('<p>hello world</p>');
+    TinySelections.setSelection(editor, [ 0, 0 ], 6, [ 0, 0 ], 11);
+    editor.execCommand('mceSetLetterSpacing', false, '3px');
+
+    TinyAssertions.assertContent(editor, '<p>hello <span style="letter-spacing: 3px;">world</span></p>');
+  });
 });

@@ -79,6 +79,10 @@ export interface EditorConstructor {
 const DOM = DOMUtils.DOM;
 const extend = Tools.extend, each = Tools.each;
 
+export type TextCaseMode = 'lowercase' | 'uppercase' | 'titlecase';
+export type ParagraphSpacingPosition = 'before' | 'after';
+export type ParagraphSpacingAction = 'add' | 'remove';
+
 /**
  * Include Editor API docs.
  *
@@ -609,6 +613,215 @@ class Editor implements EditorObservable {
    */
   public queryCommandSupported(cmd: string): boolean {
     return this.editorCommands.queryCommandSupported(cmd);
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Undo')`.
+   */
+  public undo(): boolean {
+    return this.execCommand('Undo');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Redo')`.
+   */
+  public redo(): boolean {
+    return this.execCommand('Redo');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Bold')`.
+   */
+  public toggleBold(): boolean {
+    return this.execCommand('Bold');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Italic')`.
+   */
+  public toggleItalic(): boolean {
+    return this.execCommand('Italic');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Underline')`.
+   */
+  public toggleUnderline(): boolean {
+    return this.execCommand('Underline');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Strikethrough')`.
+   */
+  public toggleStrikethrough(): boolean {
+    return this.execCommand('Strikethrough');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Subscript')`.
+   */
+  public toggleSubscript(): boolean {
+    return this.execCommand('Subscript');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Superscript')`.
+   */
+  public toggleSuperscript(): boolean {
+    return this.execCommand('Superscript');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('InsertUnorderedList')`.
+   */
+  public toggleBulletList(styleType?: string): boolean {
+    return this.execCommand('InsertUnorderedList', false, styleType ? { 'list-style-type': styleType } : undefined);
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('InsertOrderedList')`.
+   */
+  public toggleNumberedList(styleType?: string): boolean {
+    return this.execCommand('InsertOrderedList', false, styleType ? { 'list-style-type': styleType } : undefined);
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Outdent')`.
+   */
+  public outdent(): boolean {
+    return this.execCommand('Outdent');
+  }
+
+  /**
+   * Convenience wrapper for `execCommand('Indent')`.
+   */
+  public indent(): boolean {
+    return this.execCommand('Indent');
+  }
+
+  /**
+   * Convenience wrapper for alignment commands.
+   */
+  public alignLeft(): boolean {
+    return this.execCommand('JustifyLeft');
+  }
+
+  /**
+   * Convenience wrapper for alignment commands.
+   */
+  public alignCenter(): boolean {
+    return this.execCommand('JustifyCenter');
+  }
+
+  /**
+   * Convenience wrapper for alignment commands.
+   */
+  public alignRight(): boolean {
+    return this.execCommand('JustifyRight');
+  }
+
+  /**
+   * Convenience wrapper for alignment commands.
+   */
+  public alignJustify(): boolean {
+    return this.execCommand('JustifyFull');
+  }
+
+  /**
+   * Applies a text case transform from the casechange plugin.
+   */
+  public setTextCase(mode: TextCaseMode): boolean {
+    return this.execCommand('mceSetTextCase', false, mode);
+  }
+
+  /**
+   * Applies letter spacing from the letterspacing plugin.
+   */
+  public setLetterSpacing(value: string | number): boolean {
+    return this.execCommand('mceSetLetterSpacing', false, value);
+  }
+
+  /**
+   * Applies paragraph spacing commands from the paragraphspacing plugin.
+   */
+  public setParagraphSpacing(position: ParagraphSpacingPosition, action: ParagraphSpacingAction): boolean {
+    return this.execCommand('mceSetParagraphSpacing', false, { position, action });
+  }
+
+  public addParagraphSpacingBefore(): boolean {
+    return this.execCommand('mceParagraphSpacingAddBefore');
+  }
+
+  public addParagraphSpacingAfter(): boolean {
+    return this.execCommand('mceParagraphSpacingAddAfter');
+  }
+
+  public removeParagraphSpacingBefore(): boolean {
+    return this.execCommand('mceParagraphSpacingRemoveBefore');
+  }
+
+  public removeParagraphSpacingAfter(): boolean {
+    return this.execCommand('mceParagraphSpacingRemoveAfter');
+  }
+
+  /**
+   * Opens the link dialog/context action.
+   */
+  public openLinkDialog(): boolean {
+    return this.execCommand('mceLink');
+  }
+
+  /**
+   * Inserts or updates a link on the current selection.
+   */
+  public insertLink(link: string | Record<string, unknown>): boolean {
+    const value = typeof link === 'string' ? { href: link } : link;
+    return this.execCommand('mceInsertLink', false, value);
+  }
+
+  /**
+   * Removes a link from the current selection.
+   */
+  public removeLink(): boolean {
+    return this.execCommand('unlink');
+  }
+
+  /**
+   * Opens the code editor dialog.
+   */
+  public openCodeEditor(): boolean {
+    return this.execCommand('mceCodeEditor');
+  }
+
+  /**
+   * Inserts a table using rows and columns.
+   */
+  public insertTable(rows: number, columns: number): boolean {
+    return this.execCommand('mceInsertTable', false, { rows, columns });
+  }
+
+  public setBlock(format: string): boolean {
+    return this.execCommand('FormatBlock', false, format);
+  }
+
+  public setFontFamily(fontFamily: string): boolean {
+    return this.execCommand('FontName', false, fontFamily);
+  }
+
+  public setFontSize(fontSize: string): boolean {
+    return this.execCommand('FontSize', false, fontSize);
+  }
+
+  public setLineHeight(lineHeight: string): boolean {
+    return this.execCommand('LineHeight', false, lineHeight);
+  }
+
+  public setTextColor(color: string): boolean {
+    return this.execCommand('ForeColor', false, color);
+  }
+
+  public setBackgroundColor(color: string): boolean {
+    return this.execCommand('HiliteColor', false, color);
   }
 
   /**

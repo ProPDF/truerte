@@ -40,6 +40,21 @@ describe('browser.truerte.plugins.casechange.CommandsTest', () => {
     TinyAssertions.assertContent(editor, '<p><em>Hello</em> <strong>World</strong></p>');
   });
 
+  it('TINY-XXXX: mceSetTextCase should handle lowercase/uppercase/titlecase', () => {
+    const editor = hook.editor();
+
+    editor.setContent('<p>hELLo wORLD</p>');
+    TinySelections.setSelection(editor, [ 0, 0 ], 0, [ 0, 0 ], 11);
+    editor.execCommand('mceSetTextCase', false, 'lowercase');
+    TinyAssertions.assertContent(editor, '<p>hello world</p>');
+
+    editor.execCommand('mceSetTextCase', false, 'uppercase');
+    TinyAssertions.assertContent(editor, '<p>HELLO WORLD</p>');
+
+    editor.execCommand('mceSetTextCase', false, 'titlecase');
+    TinyAssertions.assertContent(editor, '<p>Hello World</p>');
+  });
+
   it('TINY-XXXX: commands should not change content when selection is collapsed', () => {
     const editor = hook.editor();
 

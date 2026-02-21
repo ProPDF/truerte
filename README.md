@@ -9,6 +9,7 @@ Used and trusted by millions of developers, [TinyMCE](https://github.com/tinymce
 Documentation is maintained in this repository (and any docs repo you attach to your fork).
 
 - Complete guide: [Installation and Usage](./docs/INSTALLATION_AND_USAGE.md)
+- Imperative API guide: [Imperative Editor API](./docs/IMPERATIVE_EDITOR_API.md)
 
 ## License
 
