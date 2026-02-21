@@ -1,6 +1,7 @@
 {
-  "name": "truerte-monorepo",
-  "private": true,
+  "name": "truerte",
+  "version": "0.0.1",
+  "private": false,
   "workspaces": [
     "modules/*"
   ],
