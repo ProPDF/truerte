@@ -1,12 +1,12 @@
 {
   "name": "truerte",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "workspaces": [
     "modules/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
+    "prepare": "patch-package",
     "truerte-grunt": "grunt --gruntfile modules/truerte/Gruntfile.js",
     "truerte-rollup": "run-s \"truerte-grunt dev rollup\"",
     "oxide-icons-build": "yarn -s --cwd modules/oxide-icons-default build",
