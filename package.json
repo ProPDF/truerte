@@ -6,7 +6,7 @@
     "modules/*"
   ],
   "scripts": {
-    "prepare": "patch-package",
+    "prepare": "node ../../node_modules/patch-package/index.js || true",
     "truerte-grunt": "grunt --gruntfile modules/truerte/Gruntfile.js",
     "truerte-rollup": "run-s \"truerte-grunt dev rollup\"",
     "oxide-icons-build": "yarn -s --cwd modules/oxide-icons-default build",
@@ -74,7 +74,7 @@
     "string-replace-loader": "^3.0.3",
     "stylelint": "^13.2.1",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-order": "^5.0.0",
+    "stylelint-order": "^4.1.0",
     "terser": "^5.17.4",
     "ts-loader": "^9.2.6",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
